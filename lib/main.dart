@@ -4,13 +4,13 @@ import 'package:icharm_web/icharm_web.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyAsL7B_9v8jJm_ScCuZWDf1tOtFMrZiMyk",
-      appId: "1:98606357414:web:0601cd01f63583798c0d67",
-      messagingSenderId: "98606357414",
-      projectId: "tenet-life",
-    ),
-  );
+  // await Firebase.initializeApp(
+  //   options: const FirebaseOptions(
+  //     apiKey: "AIzaSyAJ-YO7LPcCvHA6Xkk2v7_MqdeXjyuID98",
+  //     appId: "1:1084498170814:web:16a60bd893d51c13829fef",
+  //     messagingSenderId: "1084498170814",
+  //     projectId: "icharm-566eb",
+  //   ),
+  // );
   runApp(const ICharmWeb());
 }
