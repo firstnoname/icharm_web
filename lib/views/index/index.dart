@@ -186,7 +186,7 @@ class _IndexState extends State<Index> {
           onPressed: () {
             if (_pageController.hasClients) {
               _pageController.animateToPage(
-                6,
+                7,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.elasticInOut,
               );
