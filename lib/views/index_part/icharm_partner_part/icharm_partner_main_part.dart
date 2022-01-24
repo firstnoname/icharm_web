@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:icharm_web/views/index_part/icharm_partner_part/widget/button_partner_register.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icharm_web/views/index_part/icharm_partner_part/bloc/icharm_partner_bloc.dart';
+import 'package:icharm_web/views/index_part/icharm_partner_part/part/main_part.dart';
+import 'package:icharm_web/views/index_part/icharm_partner_part/part/register/register_dentist.dart';
+import 'package:icharm_web/views/index_part/icharm_partner_part/part/register_success_part.dart';
+
+import 'part/register/register_dentalclinic.dart';
 
 class ICHARMPartnerMainPage extends StatelessWidget {
   const ICHARMPartnerMainPage({Key? key}) : super(key: key);
@@ -7,33 +13,23 @@ class ICHARMPartnerMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('ร่วมเป็น ICHARM Partner'),
-          Divider(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ButtonPartnerRegister(
-                imageUrl:
-                    'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2Fregister_dentist_icon.png?alt=media&token=ea5f623c-23b7-41a2-b575-345214ff4b2d',
-                textButton: 'ลงทะเบียนในนามทันตแพทย์',
-                onPress: () {},
-              ),
-              ButtonPartnerRegister(
-                imageUrl:
-                    'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2Fregister_dental_clinic_icon.png?alt=media&token=21c4af70-fd21-4f86-be1b-6b891f68cca9',
-                textButton: 'ลงทะเบียนในนามคลินิกทันตกรรม',
-                onPress: () {},
-              )
-            ],
-          ),
-          Image.network(
-              'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2FICharm_parnter_%20caption.png?alt=media&token=99a86ac6-d5c7-4d67-b4cb-deed47d953d3')
-        ],
+      child: BlocProvider<IcharmPartnerBloc>(
+        create: (context) =>
+            IcharmPartnerBloc()..add(IcharmPartnerFormMainPageEvent()),
+        child: BlocBuilder<IcharmPartnerBloc, IcharmPartnerState>(
+          builder: (context, state) {
+            if (state is IcharmPartnerFormMainPage) {
+              return const MainRegisterIcharmPartner();
+            } else if (state is IcharmPartnerFormRegisterDentistPage) {
+              return RegisterDentistPart();
+            } else if (state is IcharmPartnerFormRegisterDentalClinicPage) {
+              return const RegisterDentalClinicPart();
+            } else if (state is IcharmPartnerRegisterSuccessPage) {
+              return const RegisterIcharmPartnerSuccess();
+            }
+            return Container();
+          },
+        ),
       ),
     );
   }
