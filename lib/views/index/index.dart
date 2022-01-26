@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icharm_web/views/index_part/home/home.dart';
-import 'package:icharm_web/views/index_part/icharm_partner_part/icharm_partner_main_part.dart';
+import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
+import 'package:icharm_web/views/index_part/icharm_partner/icharm_partner_main_part.dart';
 import 'package:icharm_web/views/views.dart';
 
 class Index extends StatefulWidget {
@@ -100,7 +101,7 @@ class _IndexState extends State<Index> {
             child: Text('Virtual consult'),
           ),
           const Center(
-            child: Text('iCharm management'),
+            child: LoginPart(),
           ),
           const Center(
             child: const Text('Warrnty'),

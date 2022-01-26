@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:icharm_web/views/index_part/icharm_partner_part/bloc/icharm_partner_bloc.dart';
-import 'package:icharm_web/views/index_part/icharm_partner_part/part/register/widget/form_register.dart';
+import 'package:icharm_web/views/index_part/icharm_partner/bloc/icharm_partner_bloc.dart';
+import 'package:icharm_web/views/index_part/icharm_partner/part/register/widget/form_register.dart';
+
 import 'package:provider/src/provider.dart';
 
 class RegisterDentalClinicPart extends StatefulWidget {

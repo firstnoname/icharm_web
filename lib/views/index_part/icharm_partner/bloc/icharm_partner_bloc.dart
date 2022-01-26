@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 
 part 'icharm_partner_event.dart';
@@ -18,7 +19,12 @@ class IcharmPartnerBloc extends Bloc<IcharmPartnerEvent, IcharmPartnerState> {
     on<IcharmPartnerFormRegisterDentalClinic>((event, emit) {
       emit(IcharmPartnerFormRegisterDentalClinicPage());
     });
-    on<IcharmPartnerSubmitEvent>((event, emit) {
+    on<IcharmPartnerSubmitEvent>((event, emit) async {
+      // ลอง connect cloud firebase
+      CollectionReference testCollection =
+          FirebaseFirestore.instance.collection('test_collect_data');
+      await testCollection.add({'name': 'Kitittat', 'surname': 'Janpeunsuk'});
+
       emit(IcharmPartnerRegisterSuccessPage());
     });
   }
