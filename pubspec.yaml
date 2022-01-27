@@ -31,14 +31,15 @@ dependencies:
     sdk: flutter
   adaptive_breakpoints: ^0.1.1
   google_fonts: ^2.2.0
-  flutter_bloc: ^8.0.1
+  flutter_bloc: ^7.1.0
 
   # Firebase products
-  firebase_core: "^1.4.0"
+  flutterfire_ui: ^0.3.1
   firebase_storage: ^10.0.1
   cloud_firestore: ^3.1.6
   firebase_auth: ^3.0.1
   geoflutterfire: ^3.0.2
+  firebase_core: ^1.11.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
