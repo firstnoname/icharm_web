@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:icharm_web/blocs/blocs.dart';
 import 'package:icharm_web/models/models.dart' as app_model;
 import 'package:icharm_web/services/services.dart';
 
@@ -31,6 +33,9 @@ class AuthenticationGate extends StatelessWidget {
             if (!snapshot.hasData) {
               return UserRegisterView();
             }
+            BlocProvider.of<IcharmManagerBloc>(context).add(
+                ICharmManagerEventSaveUserInfo(
+                    userInfo: snapshot.data as app_model.User));
             return const Index();
           },
         );

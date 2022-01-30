@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icharm_web/models/models.dart';
 import 'package:icharm_web/views/index_part/home/home.dart';
-import 'package:icharm_web/views/index_part/icharm_partner_part/icharm_partner_main_part.dart';
-import 'package:icharm_web/views/index_part/home/home.dart';
 import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
-import 'package:icharm_web/views/index_part/icharm_partner/icharm_partner_main_part.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
 import 'package:icharm_web/views/views.dart';
@@ -18,7 +16,7 @@ class Index extends StatefulWidget {
 
 class _IndexState extends State<Index> {
   final PageController _pageController = PageController();
-  late User _userInfo;
+  User? _userInfo;
 
   @override
   void initState() {
@@ -33,7 +31,7 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    _userInfo= BlocProvider.of<IcharmManagerBloc>(context).currentUser!;
+    _userInfo = BlocProvider.of<IcharmManagerBloc>(context).currentUser;
     return Scaffold(
       body: Column(
         children: [
@@ -60,16 +58,18 @@ class _IndexState extends State<Index> {
           ),
           Row(
             children: [
-              _userInfo!=null? Text('${_userInfo.firstName}'):TextButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Login(),
-                  ),
-                ),
-                child:
-                    const Text('Login', style: TextStyle(color: Colors.orange)),
-              ),
+              _userInfo != null
+                  ? Text('${_userInfo?.firstName} ${_userInfo?.lastName}')
+                  : TextButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Login(),
+                        ),
+                      ),
+                      child: const Text('Login',
+                          style: TextStyle(color: Colors.orange)),
+                    ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
@@ -102,8 +102,8 @@ class _IndexState extends State<Index> {
           ),
           const AboutUs(),
           const Center(
-            // child: ICHARMPartnerMainPage(),
-          ),
+              // child: ICHARMPartnerMainPage(),
+              ),
           const Center(
             child: Text('Virtual consult'),
           ),
