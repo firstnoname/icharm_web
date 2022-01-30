@@ -16,3 +16,9 @@ class ICharmManagerEventProfileSubmitted extends IcharmManagerEvent {
 
   ICharmManagerEventProfileSubmitted({required this.userInfo});
 }
+
+class ICharmManagerEventSaveUserInfo extends IcharmManagerEvent {
+  final User userInfo;
+
+  ICharmManagerEventSaveUserInfo({required this.userInfo});
+}

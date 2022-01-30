@@ -28,6 +28,7 @@ class IcharmManagerBloc extends Bloc<IcharmManagerEvent, ICharmManagerState> {
     on<ICharmManagerEventShowUserPolicy>(_onICharmManagerShowUserPolicy);
     on<ICharmManagerEventLogOutRequested>(_onICharmManagerLogOutRequested);
     on<ICharmManagerEventProfileSubmitted>(_onICharmManagerSubmittedProfile);
+    on<ICharmManagerEventSaveUserInfo>(_onSaveUserInfo);
   }
 
   Future<ICharmManagerState> _logoutProcess() async {
@@ -37,7 +38,7 @@ class IcharmManagerBloc extends Bloc<IcharmManagerEvent, ICharmManagerState> {
   }
 
   void updateCurrentUserProfile(User? user) {
-    if (_currentUser?.phoneNumber != user?.phoneNumber) {}
+    // if (_currentUser?.phoneNumber != user?.phoneNumber) {}
     _currentUser = user;
   }
 
@@ -54,7 +55,7 @@ class IcharmManagerBloc extends Bloc<IcharmManagerEvent, ICharmManagerState> {
       print('No persistent user data');
       emit(ICharmManagerStateUnauthenticated());
     }
-    emit(ICharmManagerStateInitialSuccess());
+    // emit(ICharmManagerStateAuthenticated());
   }
 
   FutureOr<void> _onICharmManagerLoginSuccess(
@@ -81,5 +82,11 @@ class IcharmManagerBloc extends Bloc<IcharmManagerEvent, ICharmManagerState> {
     // update user info to firebase here.
     userInfo = await UserAPI().updateUserInfo(userInfo);
     updateCurrentUserProfile(userInfo);
+  }
+
+  FutureOr<void> _onSaveUserInfo(
+      ICharmManagerEventSaveUserInfo event, Emitter<ICharmManagerState> emit) {
+    updateCurrentUserProfile(event.userInfo);
+    emit(ICharmManagerStateAuthenticated());
   }
 }

@@ -11,17 +11,23 @@ class ICharmWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => IcharmManagerBloc())],
+      providers: [
+        BlocProvider(
+            create: (_) =>
+                IcharmManagerBloc()..add(ICharmManagerEventInitialApp()))
+      ],
       child: MaterialApp(
         title: 'iCharm web application',
         debugShowCheckedModeBanner: false,
-        home: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {}
-            return _buildHome();
-          },
-        ),
+        // home: AuthenticationGate(),
+        home: _buildHome(),
+        // home: StreamBuilder<User?>(
+        //   stream: FirebaseAuth.instance.authStateChanges(),
+        //   builder: (context, snapshot) {
+        //     if (!snapshot.hasData) {}
+        //     return _buildHome();
+        //   },
+        // ),
       ),
     );
   }
@@ -30,12 +36,11 @@ class ICharmWeb extends StatelessWidget {
     return BlocBuilder<IcharmManagerBloc, ICharmManagerState>(
       builder: (context, state) {
         Widget view;
+        // ต้องเพิ่ม ICharmManagerStateUpdatedUserInfo เพื่อ redirect ไปยัง index.
         if (state is ICharmManagerStateAuthenticated) {
           view = const Index();
         } else if (state is ICharmManagerStateUnauthenticated) {
-          view = const SignInScreen(
-            providerConfigs: [PhoneProviderConfiguration()],
-          );
+          view = const AuthenticationGate();
         } else {
           view = const Center(
             child: Text('เกิดข้อผิดพลาด'),

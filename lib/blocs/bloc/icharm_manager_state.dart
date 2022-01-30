@@ -12,3 +12,5 @@ class ICharmManagerStateAuthenticated extends ICharmManagerState {}
 class ICharmManagerStateUnauthenticated extends ICharmManagerState {}
 
 class ICharmManagerStatePolicyShowed extends ICharmManagerState {}
+
+class ICharmManagerStateUpdatedUserInfo extends ICharmManagerState {}

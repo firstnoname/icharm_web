@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icharm_web/blocs/blocs.dart';
 import 'package:icharm_web/views/views.dart';
 
 class Index extends StatefulWidget {
@@ -24,6 +26,7 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
+    var userInfo = BlocProvider.of<IcharmManagerBloc>(context).currentUser;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Index'),
@@ -36,7 +39,10 @@ class _IndexState extends State<Index> {
                 builder: (context) => const Login(),
               ),
             ),
-            child: const Text('Login', style: TextStyle(color: Colors.white)),
+            child: Text(
+              userInfo != null ? '${userInfo.firstName}' : 'Login',
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
