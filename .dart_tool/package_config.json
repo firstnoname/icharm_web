@@ -314,6 +314,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "responsive_framework",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/responsive_framework-0.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "rxdart",
       "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.3",
       "packageUri": "lib/",
@@ -392,7 +398,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-01-23T16:11:00.505435Z",
+  "generated": "2022-01-29T07:45:31.993925Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

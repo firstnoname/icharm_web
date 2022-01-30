@@ -15,31 +15,45 @@ class MainRegisterIcharmPartner extends StatelessWidget {
       children: [
         const Text('ร่วมเป็น ICHARM Partner'),
         const Divider(),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ButtonPartnerRegister(
-              imageUrl:
-                  'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2Fregister_dentist_icon.png?alt=media&token=ea5f623c-23b7-41a2-b575-345214ff4b2d',
-              textButton: 'ลงทะเบียนในนามทันตแพทย์',
-              onPress: () {
-                context
-                    .read<IcharmPartnerBloc>()
-                    .add(IcharmPartnerFormRegisterDentistEvent());
-              },
-            ),
-            ButtonPartnerRegister(
-              imageUrl:
-                  'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2Fregister_dental_clinic_icon.png?alt=media&token=21c4af70-fd21-4f86-be1b-6b891f68cca9',
-              textButton: 'ลงทะเบียนในนามคลินิกทันตกรรม',
-              onPress: () {
-                context
-                    .read<IcharmPartnerBloc>()
-                    .add(IcharmPartnerFormRegisterDentalClinic());
-              },
-            )
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                fit: FlexFit.tight,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ButtonPartnerRegister(
+                    imageUrl:
+                        'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2Fregister_dentist_icon.png?alt=media&token=ea5f623c-23b7-41a2-b575-345214ff4b2d',
+                    textButton: 'ลงทะเบียนในนามทันตแพทย์',
+                    onPress: () {
+                      context
+                          .read<IcharmPartnerBloc>()
+                          .add(IcharmPartnerFormRegisterDentistEvent());
+                    },
+                  ),
+                ),
+              ),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ButtonPartnerRegister(
+                    imageUrl:
+                        'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2Fregister_dental_clinic_icon.png?alt=media&token=21c4af70-fd21-4f86-be1b-6b891f68cca9',
+                    textButton: 'ลงทะเบียนในนามคลินิกทันตกรรม',
+                    onPress: () {
+                      context
+                          .read<IcharmPartnerBloc>()
+                          .add(IcharmPartnerFormRegisterDentalClinic());
+                    },
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
         Image.network(
             'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2FICharm_parnter_%20caption.png?alt=media&token=99a86ac6-d5c7-4d67-b4cb-deed47d953d3')
