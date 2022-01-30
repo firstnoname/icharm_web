@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:icharm_web/views/index_part/home/home.dart';
+import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
+import 'package:icharm_web/views/index_part/icharm_partner/icharm_partner_main_part.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
 import 'package:icharm_web/views/views.dart';
@@ -26,43 +29,57 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    var userInfo = BlocProvider.of<IcharmManagerBloc>(context).currentUser;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Index'),
-        centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Login(),
-              ),
-            ),
-            child: Text(
-              userInfo != null ? '${userInfo.firstName}' : 'Login',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Contact us'),
-              ),
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30))),
-              onPressed: () {},
-            ),
-          )
-        ],
-      ),
       body: Column(
         children: [
+          _header(),
           _buildNavigationBar(),
           _buildBody(),
+        ],
+      ),
+    );
+  }
+
+  Widget _header() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            child: Center(
+              child: Image.network(
+                  'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2Ficon%2FIcharm_icon.svg?alt=media&token=773d6f5c-6c4d-40e8-b2d1-61d3506489a3'),
+            ),
+          ),
+          Row(
+            children: [
+              TextButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Login(),
+                  ),
+                ),
+                child:
+                    const Text('Login', style: TextStyle(color: Colors.orange)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('ติดต่อเรา'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30))),
+                  onPressed: () {},
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -72,27 +89,29 @@ class _IndexState extends State<Index> {
     return Expanded(
       child: PageView(
         controller: _pageController,
-        children: const [
+        children: [
           Center(
-            child: Text('Home'),
+            child: HomePage(
+              pageController: _pageController,
+            ),
           ),
-          AboutUs(),
-          Center(
-            child: Text('iCharm partner'),
+          const AboutUs(),
+          const Center(
+            child: ICHARMPartnerMainPage(),
           ),
-          Center(
+          const Center(
             child: Text('Virtual consult'),
           ),
-          Center(
-            child: Text('iCharm management'),
+          const Center(
+            child: LoginPart(),
           ),
-          Center(
-            child: Text('Warrnty'),
+          const Center(
+            child: const Text('Warrnty'),
           ),
-          Center(
-            child: Text('Q & A'),
+          const Center(
+            child: const Text('Q & A'),
           ),
-          Center(
+          const Center(
             child: Text('Advertis manager'),
           )
         ],
