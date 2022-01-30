@@ -6,6 +6,8 @@ import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
 import 'package:icharm_web/views/views.dart';
+import 'package:icharm_web/widget/navBar/navbarButton.dart';
+import 'package:icharm_web/widget/navBar/navbarItem.dart';
 
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
@@ -15,8 +17,8 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
-  final PageController _pageController = PageController();
   User? _userInfo;
+  final PageController pageController = PageController();
 
   @override
   void initState() {
@@ -25,18 +27,20 @@ class _IndexState extends State<Index> {
 
   @override
   void dispose() {
-    _pageController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
+  double collapsableHeight = 0.0;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     _userInfo = BlocProvider.of<IcharmManagerBloc>(context).currentUser;
     return Scaffold(
       body: Column(
         children: [
           _header(),
-          _buildNavigationBar(),
+          _buildNavigationBar(withScreen: width),
           _buildBody(),
         ],
       ),
@@ -93,17 +97,17 @@ class _IndexState extends State<Index> {
   Expanded _buildBody() {
     return Expanded(
       child: PageView(
-        controller: _pageController,
+        controller: pageController,
         children: [
           Center(
             child: HomePage(
-              pageController: _pageController,
+              pageController: pageController,
             ),
           ),
           const AboutUs(),
           const Center(
-              // child: ICHARMPartnerMainPage(),
-              ),
+            child: ICHARMPartnerMainPage(),
+          ),
           const Center(
             child: Text('Virtual consult'),
           ),
@@ -111,10 +115,10 @@ class _IndexState extends State<Index> {
             child: LoginPart(),
           ),
           const Center(
-            child: const Text('Warrnty'),
+            child: Text('Warrnty'),
           ),
           const Center(
-            child: const Text('Q & A'),
+            child: Text('Q & A'),
           ),
           const Center(
             child: Text('Advertis manager'),
@@ -124,105 +128,223 @@ class _IndexState extends State<Index> {
     );
   }
 
-  Row _buildNavigationBar() {
-    return Row(
+  Widget _buildNavigationBar({required double withScreen}) {
+    return Stack(
       children: [
-        TextButton(
-          child: const Text('Home'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                0,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
+        AnimatedContainer(
+          margin: const EdgeInsets.only(top: 79.0),
+          duration: const Duration(milliseconds: 375),
+          curve: Curves.ease,
+          height: (withScreen < 1000.0) ? collapsableHeight : 0.0,
+          width: double.infinity,
+          color: const Color(0xff121212),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                NavBarItem(
+                  text: 'Home',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        0,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+                NavBarItem(
+                  text: 'About us',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        1,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+                NavBarItem(
+                  text: 'iCharm Partner',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        2,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+                NavBarItem(
+                  text: 'Virtual consult',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        3,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+                NavBarItem(
+                  text: 'iCharm management',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        4,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+                NavBarItem(
+                  text: 'Warranty',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        5,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+                NavBarItem(
+                  text: 'Q & A',
+                  onPress: () {
+                    if (pageController.hasClients) {
+                      pageController.animateToPage(
+                        6,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.elasticInOut,
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
-        TextButton(
-          child: const Text('About us'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                1,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
+        Container(
+          color: const Color(0xff121212),
+          height: 80.0,
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              LayoutBuilder(builder: (context, constraints) {
+                if (withScreen < 1000) {
+                  return NavBarButton(
+                    onPressed: () {
+                      if (collapsableHeight == 0.0) {
+                        setState(() {
+                          collapsableHeight = 240.0;
+                        });
+                      } else if (collapsableHeight == 240.0) {
+                        setState(() {
+                          collapsableHeight = 0.0;
+                        });
+                      }
+                    },
+                  );
+                } else {
+                  return Row(
+                    children: [
+                      NavBarItem(
+                        text: 'Home',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              0,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                      NavBarItem(
+                        text: 'About us',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              1,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                      NavBarItem(
+                        text: 'iCharm Partner',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              2,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                      NavBarItem(
+                        text: 'Virtual consult',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              3,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                      NavBarItem(
+                        text: 'iCharm management',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              4,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                      NavBarItem(
+                        text: 'Warranty',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              5,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                      NavBarItem(
+                        text: 'Q & A',
+                        onPress: () {
+                          if (pageController.hasClients) {
+                            pageController.animateToPage(
+                              6,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.elasticInOut,
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  );
+                }
+              })
+            ],
+          ),
         ),
-        TextButton(
-          child: const Text('iCharm Partner'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                2,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
-        ),
-        TextButton(
-          child: const Text('Virtual consult'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                3,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
-        ),
-        TextButton(
-          child: const Text('iCharm management'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                4,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
-        ),
-        TextButton(
-          child: const Text('Warranty'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                5,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
-        ),
-        TextButton(
-          child: const Text('Q & A'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                6,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
-        ),
-        TextButton(
-          child: const Text('Advertis manager'),
-          onPressed: () {
-            if (_pageController.hasClients) {
-              _pageController.animateToPage(
-                7,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.elasticInOut,
-              );
-            }
-          },
-        )
       ],
     );
   }
