@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:icharm_web/models/models.dart';
+import 'package:icharm_web/views/index_part/home/home.dart';
+import 'package:icharm_web/views/index_part/icharm_partner_part/icharm_partner_main_part.dart';
 import 'package:icharm_web/views/index_part/home/home.dart';
 import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
 import 'package:icharm_web/views/index_part/icharm_partner/icharm_partner_main_part.dart';
@@ -15,6 +18,7 @@ class Index extends StatefulWidget {
 
 class _IndexState extends State<Index> {
   final PageController _pageController = PageController();
+  late User _userInfo;
 
   @override
   void initState() {
@@ -29,6 +33,7 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
+    _userInfo= BlocProvider.of<IcharmManagerBloc>(context).currentUser!;
     return Scaffold(
       body: Column(
         children: [
@@ -55,7 +60,7 @@ class _IndexState extends State<Index> {
           ),
           Row(
             children: [
-              TextButton(
+              _userInfo!=null? Text('${_userInfo.firstName}'):TextButton(
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -97,7 +102,7 @@ class _IndexState extends State<Index> {
           ),
           const AboutUs(),
           const Center(
-            child: ICHARMPartnerMainPage(),
+            // child: ICHARMPartnerMainPage(),
           ),
           const Center(
             child: Text('Virtual consult'),
