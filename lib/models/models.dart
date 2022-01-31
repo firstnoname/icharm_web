@@ -13,3 +13,6 @@ export 'patient/aligner.dart';
 export 'patient/aligner_history.dart';
 export 'patient/update_image.dart';
 export 'patient/aligner_info.dart';
+
+export 'dentist/dentist.dart';
+export 'dentist/clinic_dentist.dart';

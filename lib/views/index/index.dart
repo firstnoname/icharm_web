@@ -5,6 +5,7 @@ import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
+import 'package:icharm_web/views/index_part/icharm_partner/icharm_partner_main_part.dart';
 import 'package:icharm_web/views/views.dart';
 import 'package:icharm_web/widget/navBar/navbarButton.dart';
 import 'package:icharm_web/widget/navBar/navbarItem.dart';

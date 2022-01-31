@@ -1,4 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/auth.dart';
@@ -20,7 +21,8 @@ class ICharmWeb extends StatelessWidget {
         title: 'iCharm web application',
         debugShowCheckedModeBanner: false,
         // home: AuthenticationGate(),
-        home: _buildHome(),
+        home: buildHome(),
+        // home: const Index(),
         // home: StreamBuilder<User?>(
         //   stream: FirebaseAuth.instance.authStateChanges(),
         //   builder: (context, snapshot) {
@@ -32,7 +34,7 @@ class ICharmWeb extends StatelessWidget {
     );
   }
 
-  Widget _buildHome() {
+  Widget buildHome() {
     return BlocBuilder<IcharmManagerBloc, ICharmManagerState>(
       builder: (context, state) {
         Widget view;

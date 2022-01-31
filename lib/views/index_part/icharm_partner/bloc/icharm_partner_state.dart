@@ -12,3 +12,8 @@ class IcharmPartnerFormRegisterDentistPage extends IcharmPartnerState {}
 class IcharmPartnerFormRegisterDentalClinicPage extends IcharmPartnerState {}
 
 class IcharmPartnerRegisterSuccessPage extends IcharmPartnerState {}
+
+class IcharmPartnerRegisterErrorOccur extends IcharmPartnerState {
+  final String message;
+  IcharmPartnerRegisterErrorOccur({required this.message});
+}

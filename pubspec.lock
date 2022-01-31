@@ -100,9 +100,16 @@ packages:
     source: hosted
     version: "0.0.2"
   email_validator:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: email_validator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  enum_to_string:
+    dependency: "direct main"
+    description:
+      name: enum_to_string
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
@@ -504,6 +511,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  responsive_framework:
+    dependency: "direct main"
+    description:
+      name: responsive_framework
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   rxdart:
     dependency: transitive
     description:

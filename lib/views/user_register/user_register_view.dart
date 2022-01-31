@@ -65,10 +65,7 @@ class UserRegisterView extends StatelessWidget {
                 child: ElevatedButton(
                   child: const Text('signup'),
                   onPressed: () async {
-                    // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
                       User userInfo = await UserAPI().addUser(
                         User(
                           id: auth.FirebaseAuth.instance.currentUser!.uid,
