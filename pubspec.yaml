@@ -32,6 +32,7 @@ dependencies:
   adaptive_breakpoints: ^0.1.1
   google_fonts: ^2.2.0
   flutter_bloc: ^7.1.0
+  flutter_svg: ^1.0.3
 
   # Firebase products
   flutterfire_ui: ^0.3.1
@@ -69,6 +70,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/virtual_consult/question_icon/
+    - assets/virtual_consult/take_photo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

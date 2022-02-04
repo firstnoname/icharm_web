@@ -5,6 +5,7 @@ import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
+import 'package:icharm_web/views/index_part/virtual_consult/virtual_consult_view.dart';
 import 'package:icharm_web/views/views.dart';
 
 class Index extends StatefulWidget {
@@ -104,9 +105,7 @@ class _IndexState extends State<Index> {
           const Center(
               // child: ICHARMPartnerMainPage(),
               ),
-          const Center(
-            child: Text('Virtual consult'),
-          ),
+          VirtualConsultView(),
           const Center(
             child: LoginPart(),
           ),

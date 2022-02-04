@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterfire_ui/auth.dart';
-import 'package:icharm_web/blocs/blocs.dart';
-import 'package:icharm_web/views/views.dart';
+
+import '../blocs/blocs.dart';
+import '../utilities/utilities.dart';
+import '../views/views.dart';
 
 class ICharmWeb extends StatelessWidget {
   const ICharmWeb({Key? key}) : super(key: key);
@@ -19,15 +19,8 @@ class ICharmWeb extends StatelessWidget {
       child: MaterialApp(
         title: 'iCharm web application',
         debugShowCheckedModeBanner: false,
-        // home: AuthenticationGate(),
+        scrollBehavior: AppScrollBehavior(),
         home: _buildHome(),
-        // home: StreamBuilder<User?>(
-        //   stream: FirebaseAuth.instance.authStateChanges(),
-        //   builder: (context, snapshot) {
-        //     if (!snapshot.hasData) {}
-        //     return _buildHome();
-        //   },
-        // ),
       ),
     );
   }
@@ -36,7 +29,7 @@ class ICharmWeb extends StatelessWidget {
     return BlocBuilder<IcharmManagerBloc, ICharmManagerState>(
       builder: (context, state) {
         Widget view;
-        // ต้องเพิ่ม ICharmManagerStateUpdatedUserInfo เพื่อ redirect ไปยัง index.
+
         if (state is ICharmManagerStateAuthenticated) {
           view = const Index();
         } else if (state is ICharmManagerStateUnauthenticated) {
