@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icharm_web/models/models.dart';
 import 'package:icharm_web/views/index_part/home/home.dart';
-import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
+import 'package:icharm_web/views/index_part/icharm_management/icharm_management.dart';
+import 'package:icharm_web/views/index_part/icharm_management/part/icharm_management_login_part.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
@@ -113,7 +114,7 @@ class _IndexState extends State<Index> {
             child: Text('Virtual consult'),
           ),
           const Center(
-            child: LoginPart(),
+            child: IcharmManagement(),
           ),
           const Center(
             child: Text('Warrnty'),

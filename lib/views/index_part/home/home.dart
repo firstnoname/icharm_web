@@ -3,7 +3,7 @@ import 'package:icharm_web/views/index_part/home/widget/button_main.dart';
 
 class HomePage extends StatelessWidget {
   final PageController pageController;
-  HomePage({Key? key, required this.pageController}) : super(key: key);
+  const HomePage({Key? key, required this.pageController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
