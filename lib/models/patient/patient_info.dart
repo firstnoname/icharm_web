@@ -1,3 +1,5 @@
+import 'package:icharm_web/models/patient/estimation/estimation_info.dart';
+
 import '../models.dart';
 
 class PatientInfo extends BasedObject {
@@ -5,13 +7,15 @@ class PatientInfo extends BasedObject {
   AlignerInfo? alignerInfo;
   Aligner? aligner;
   String? caseId;
+  EstimationInfo? estimationInfo;
 
   PatientInfo({
     String? id,
     this.userInfo,
     this.alignerInfo,
     this.caseId,
-    required Log log,
+    this.estimationInfo,
+    Log? log,
   }) : super(id: id = '', log: log);
 
   PatientInfo.fromJson(Map<String, dynamic> json)
@@ -28,6 +32,9 @@ class PatientInfo extends BasedObject {
     if (json['case_id'] != null) {
       caseId = json['case_id'];
     }
+    if (json['estimation_info'] != null) {
+      estimationInfo = EstimationInfo.fromJson(json['estimation_info']);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +43,7 @@ class PatientInfo extends BasedObject {
     map['user_info'] = userInfo != null ? userInfo!.toJson() : null;
     map['aligner'] = aligner != null ? aligner!.toJson() : null;
     map['aligner_info'] = alignerInfo?.toJson();
+    map['estimation_info'] = estimationInfo?.toJson();
     map['case_id'] = caseId;
     return map;
   }

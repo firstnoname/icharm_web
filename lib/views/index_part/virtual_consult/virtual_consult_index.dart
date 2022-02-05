@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icharm_web/models/models.dart';
 import 'package:icharm_web/utilities/utilities.dart';
+import 'package:icharm_web/views/index_part/virtual_consult/bloc/virtual_consult_bloc.dart';
 
 class VirtualConsultIndex extends StatelessWidget {
   final Function onPressedNextButton;
@@ -12,6 +15,7 @@ class VirtualConsultIndex extends StatelessWidget {
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _clinicOrHospitalNameController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
   final _provinceController = TextEditingController();
 
   @override
@@ -61,6 +65,14 @@ class VirtualConsultIndex extends StatelessWidget {
                   Validations().validationNormalTextField(someText: value),
             ),
             TextFormField(
+              controller: _phoneNumberController,
+              decoration: const InputDecoration(
+                hintText: 'Phone number',
+              ),
+              validator: (value) =>
+                  Validations().validationNormalTextField(someText: value),
+            ),
+            TextFormField(
               controller: _provinceController,
               decoration: const InputDecoration(
                 hintText: 'Province',
@@ -74,7 +86,19 @@ class VirtualConsultIndex extends StatelessWidget {
                 child: const Text('Next'),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    onPressedNextButton();
+                    BlocProvider.of<VirtualConsultBloc>(context).add(
+                      VirtualConsultEventAddPatientInfo(
+                        patientInfo: PatientInfo(
+                          userInfo: User(
+                            firstName: _firstNameController.text,
+                            lastName: _lastNameController.text,
+                            phoneNumber: _phoneNumberController.text,
+                            email: _emailController.text,
+                          ),
+                        ),
+                      ),
+                    );
+                    // onPressedNextButton();
                   }
                 },
               ),
