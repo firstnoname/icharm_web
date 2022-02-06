@@ -1,13 +1,13 @@
 import 'package:icharm_web/models/patient/estimation/answer.dart';
 
 class EstimationInfo {
-  final Answer? questionOne;
-  final Answer? questionTwo;
-  final Answer? questionThree;
-  final String? imageOne;
-  final String? imageTwo;
-  final String? imageThree;
-  final String? imageFour;
+  Answer? questionOne;
+  Answer? questionTwo;
+  Answer? questionThree;
+  String? imageOne;
+  String? imageTwo;
+  String? imageThree;
+  String? imageFour;
 
   EstimationInfo(
       {this.questionOne,

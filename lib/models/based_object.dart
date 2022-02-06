@@ -1,8 +1,8 @@
 import 'log.dart';
 
 abstract class BasedObject {
-  final String? id;
-  final Log? log;
+  String? id;
+  Log? log;
 
   BasedObject({required this.id, required this.log});
 

@@ -11,6 +11,7 @@ void main() async {
       messagingSenderId: "1084498170814",
       appId: "1:1084498170814:web:16a60bd893d51c13829fef",
       measurementId: "G-VK0ZHCQGTS",
+      storageBucket: "icharm-566eb.appspot.com",
     ),
   );
   runApp(const ICharmWeb());

@@ -31,7 +31,17 @@ class _VirtualConsultViewState extends State<VirtualConsultView> {
           }
         },
       ),
-      const VirtualConsultEstimate(),
+      VirtualConsultEstimate(
+        onPressedNextButton: () {
+          if (controller.hasClients) {
+            controller.animateToPage(
+              2,
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.easeInOut,
+            );
+          }
+        },
+      ),
       const VirtualConsultPhotos(),
     ];
     super.initState();

@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icharm_web/models/patient/estimation/answer.dart';
+import 'package:icharm_web/utilities/utilities.dart';
+import 'package:icharm_web/views/index_part/virtual_consult/bloc/virtual_consult_bloc.dart';
 
 class VirtualConsultEstimate extends StatelessWidget {
-  const VirtualConsultEstimate({Key? key}) : super(key: key);
+  VirtualConsultEstimate({Key? key, required this.onPressedNextButton})
+      : super(key: key);
+
+  final Function onPressedNextButton;
+  Answer questionOne = Answer(questionNumber: 1, answer: 0);
+  Answer questionTwo = Answer(questionNumber: 2, answer: 0);
+  Answer questionThree = Answer(questionNumber: 3, answerText: '');
+
+  final _formKey = GlobalKey<FormState>();
+
+  final _answerThreeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +56,21 @@ class VirtualConsultEstimate extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      questionThree = Answer(
+                        questionNumber: 3,
+                        answerText: _answerThreeController.text,
+                      );
+
+                      BlocProvider.of<VirtualConsultBloc>(context).add(
+                          VirtualConsultEventAddEstimated(
+                              questionOne: questionOne,
+                              questionTwo: questionTwo,
+                              questionThree: questionThree));
+                      onPressedNextButton();
+                    }
+                  },
                 ),
               ],
             ),
@@ -53,12 +81,15 @@ class VirtualConsultEstimate extends StatelessWidget {
   }
 
   Widget _buildQuestions() {
-    return Column(
-      children: [
-        _buildQuestionOne(),
-        _buildQuestionTwo(),
-        _buildQuestionThree(),
-      ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          _buildQuestionOne(),
+          _buildQuestionTwo(),
+          _buildQuestionThree(),
+        ],
+      ),
     );
   }
 
@@ -72,8 +103,11 @@ class VirtualConsultEstimate extends StatelessWidget {
             const Text('3.คุณอยากเปลี่ยนแปลงตรงไหน?'),
             const SizedBox(height: 16),
             TextFormField(
+              controller: _answerThreeController,
               decoration: const InputDecoration(
                   hintText: 'เช่น ฉันต้องการให้ฟันของฉันดูดีกว่านี้'),
+              validator: (value) =>
+                  Validations().validationNormalTextField(someText: value),
             ),
           ],
         ),
@@ -82,6 +116,13 @@ class VirtualConsultEstimate extends StatelessWidget {
   }
 
   Card _buildQuestionTwo() {
+    ValueNotifier<int> _value = ValueNotifier(0);
+    List<String> answerList = [
+      'assets/virtual_consult/question_icon/image_01.png',
+      'assets/virtual_consult/question_icon/image_02.png',
+      'assets/virtual_consult/question_icon/image_03.png',
+      'assets/virtual_consult/question_icon/image_04.png',
+    ];
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -90,62 +131,40 @@ class VirtualConsultEstimate extends StatelessWidget {
           children: [
             const Text('2.คุณจะอธิบายภาพฟันของคุณว่า?'),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(
-                        color: Colors.grey,
+            ValueListenableBuilder(
+              valueListenable: _value,
+              builder: (BuildContext context, int value, Widget? child) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List<Widget>.generate(
+                    answerList.length,
+                    (index) => ChoiceChip(
+                      backgroundColor: Colors.transparent,
+                      selected: _value.value == index,
+                      onSelected: (bool selected) {
+                        questionTwo = Answer(
+                          questionNumber: 2,
+                          answer: _value.value = selected ? index : 0,
+                          answerText: '',
+                        );
+                      },
+                      label: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15)),
+                            border: Border.all(
+                              color: Colors.transparent,
+                            ),
+                          ),
+                          child: Image.asset(answerList[index]),
+                        ),
                       ),
                     ),
-                    child: Image.asset(
-                        'assets/virtual_consult/question_icon/image_01.png'),
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Image.asset(
-                        'assets/virtual_consult/question_icon/image_02.png'),
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Image.asset(
-                        'assets/virtual_consult/question_icon/image_03.png'),
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Image.asset(
-                        'assets/virtual_consult/question_icon/image_04.png'),
-                  ),
-                ),
-              ],
+                  ).toList(),
+                );
+              },
             ),
           ],
         ),
@@ -154,6 +173,15 @@ class VirtualConsultEstimate extends StatelessWidget {
   }
 
   Card _buildQuestionOne() {
+    ValueNotifier<int> _value = ValueNotifier(0);
+    List<String> answersList = [
+      '< 18',
+      '18-25',
+      '26-35',
+      '36-45',
+      '46-55',
+      '> 55',
+    ];
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -162,17 +190,27 @@ class VirtualConsultEstimate extends StatelessWidget {
           children: [
             const Text('1.คุณจัดอยู่ในช่วงวัยไหน?'),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Chip(label: Text('< 18')),
-                Chip(label: Text('18-25')),
-                Chip(label: Text('26-35')),
-                Chip(label: Text('36-45')),
-                Chip(label: Text('46-55')),
-                Chip(label: Text('> 55')),
-              ],
-            ),
+            ValueListenableBuilder(
+                valueListenable: _value,
+                builder: (BuildContext context, int value, Widget? child) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: List<Widget>.generate(
+                      answersList.length,
+                      (index) => ChoiceChip(
+                        label: Text(answersList[index]),
+                        selected: _value.value == index,
+                        onSelected: (bool selected) {
+                          questionOne = Answer(
+                            questionNumber: 1,
+                            answer: _value.value = selected ? index : 0,
+                            answerText: '',
+                          );
+                        },
+                      ),
+                    ).toList(),
+                  );
+                }),
           ],
         ),
       ),

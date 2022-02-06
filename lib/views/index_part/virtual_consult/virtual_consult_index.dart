@@ -88,17 +88,15 @@ class VirtualConsultIndex extends StatelessWidget {
                   if (_formKey.currentState!.validate()) {
                     BlocProvider.of<VirtualConsultBloc>(context).add(
                       VirtualConsultEventAddPatientInfo(
-                        patientInfo: PatientInfo(
-                          userInfo: User(
-                            firstName: _firstNameController.text,
-                            lastName: _lastNameController.text,
-                            phoneNumber: _phoneNumberController.text,
-                            email: _emailController.text,
-                          ),
+                        userInfo: User(
+                          firstName: _firstNameController.text,
+                          lastName: _lastNameController.text,
+                          phoneNumber: _phoneNumberController.text,
+                          email: _emailController.text,
                         ),
                       ),
                     );
-                    // onPressedNextButton();
+                    onPressedNextButton();
                   }
                 },
               ),
