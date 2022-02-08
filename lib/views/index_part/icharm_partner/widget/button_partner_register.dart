@@ -16,22 +16,17 @@ class ButtonPartnerRegister extends StatelessWidget {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(onPrimary: Colors.orange),
         onPressed: onPress,
-        child: Flexible(
-          child: Row(
-            children: [
-              Flexible(
-                  child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Image.network(imageUrl),
-              )),
-              Flexible(
-                child: Text(
-                  textButton,
-                  overflow: TextOverflow.fade,
-                ),
-              )
-            ],
-          ),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.network(imageUrl),
+            ),
+            Text(
+              textButton,
+              overflow: TextOverflow.fade,
+            )
+          ],
         ));
   }
 }

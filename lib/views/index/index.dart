@@ -119,8 +119,19 @@ class _IndexState extends State<Index> {
           const Center(
             child: Text('Warrnty'),
           ),
-          const Center(
-            child: Text('Q & A'),
+          Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2FQ%26A%2Fq_a_icharm-A4-01.svg?alt=media&token=e0d6f92c-145a-4c4d-a746-a07b52499a59'),
+                  Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2FQ%26A%2Fq_a_icharm-A4-02.svg?alt=media&token=f2373364-cca0-422f-9d13-229a519990e8'),
+                  Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2FQ%26A%2Fq_a_icharm-A4-03.svg?alt=media&token=09176422-352a-4a10-9ac5-500c53a621da')
+                ],
+              ),
+            ),
           ),
           const Center(
             child: Text('Advertis manager'),
