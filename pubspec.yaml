@@ -29,6 +29,11 @@ dependencies:
   email_validator: ^2.0.1
   enum_to_string: ^2.0.1
 
+  # device control 
+  camera: ^0.9.4+10
+
+
+
   cupertino_icons: ^1.0.2
   responsive_framework: ^0.1.5
 

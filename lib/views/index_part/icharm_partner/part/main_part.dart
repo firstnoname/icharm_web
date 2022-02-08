@@ -22,7 +22,6 @@ class MainRegisterIcharmPartner extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                fit: FlexFit.tight,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ButtonPartnerRegister(

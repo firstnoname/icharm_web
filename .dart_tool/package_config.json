@@ -26,6 +26,24 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "camera",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/camera-0.9.4+11",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "camera_platform_interface",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/camera_platform_interface-2.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "camera_web",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/camera_web-0.2.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.2.0",
       "packageUri": "lib/",
@@ -64,6 +82,12 @@
     {
       "name": "collection",
       "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "cross_file",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/cross_file-0.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -242,6 +266,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.0.3",
       "packageUri": "lib/",
@@ -304,6 +334,12 @@
     {
       "name": "http_parser",
       "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "image_picker_web",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_web-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -500,6 +536,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "stream_transform",
+      "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/stream_transform-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "string_scanner",
       "rootUri": "file:///Users/kitittat_j/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0",
       "packageUri": "lib/",
@@ -560,7 +602,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-01-30T13:34:03.026373Z",
+  "generated": "2022-02-08T03:50:25.051306Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

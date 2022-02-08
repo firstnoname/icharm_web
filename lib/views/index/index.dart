@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icharm_web/models/models.dart';
 import 'package:icharm_web/views/index_part/home/home.dart';
-import 'package:icharm_web/views/index_part/icharm_management/login_part.dart';
+import 'package:icharm_web/views/index_part/icharm_management/icharm_management.dart';
+import 'package:icharm_web/views/index_part/icharm_management/part/icharm_management_login_part.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icharm_web/blocs/blocs.dart';
@@ -114,13 +115,24 @@ class _IndexState extends State<Index> {
             child: VirtualConsultView(),
           ),
           const Center(
-            child: LoginPart(),
+            child: IcharmManagement(),
           ),
           const Center(
             child: Text('Warranty'),
           ),
-          const Center(
-            child: Text('Q & A'),
+          Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2FQ%26A%2Fq_a_icharm-A4-01.svg?alt=media&token=e0d6f92c-145a-4c4d-a746-a07b52499a59'),
+                  Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2FQ%26A%2Fq_a_icharm-A4-02.svg?alt=media&token=f2373364-cca0-422f-9d13-229a519990e8'),
+                  Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/icharm-566eb.appspot.com/o/element_image%2FQ%26A%2Fq_a_icharm-A4-03.svg?alt=media&token=09176422-352a-4a10-9ac5-500c53a621da')
+                ],
+              ),
+            ),
           ),
           const Center(
             child: Text('Advertis manager'),

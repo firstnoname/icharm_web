@@ -1,7 +1,7 @@
 enum DentistType { dentist, orthodontics }
 
 class Dentist {
-  String dentistType;
+  String? dentistType;
   String prefixName;
   String nameLastname;
   String professionalDentistLicense;
@@ -14,7 +14,7 @@ class Dentist {
   String email;
   String experience;
   Dentist(
-      {required this.dentistType,
+      {this.dentistType,
       required this.prefixName,
       required this.nameLastname,
       required this.professionalDentistLicense,
